@@ -1,0 +1,10 @@
+streamlit
+openai
+langchain
+PyPDF2
+python-docx
+python-pptx
+opencv-python
+pillow
+python-dotenv
+pyttsx3

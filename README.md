@@ -52,19 +52,27 @@
 
 ## 📸 Screenshots
 
-
+- Home Interface
 ![home](https://github.com/user-attachments/assets/376ade8d-202c-4488-b49a-22566edb3aec)
+
+- General Intelligence  
 ![general_intelligence_chat](https://github.com/user-attachments/assets/a4961ac4-2027-490f-a21c-c255b467cac4)
+
+- Overall Intelligence  
 ![overall_intelligence_chat](https://github.com/user-attachments/assets/25ebe1e2-a289-49b7-acb8-5b7afbc94e72)
+
+- Memory Lanes 
 ![memory_lanes](https://github.com/user-attachments/assets/b4a636a4-4e93-410a-b17b-a2dcee5e68a5)
+
+- Expert Personas
 ![intelligent_experts](https://github.com/user-attachments/assets/ad95d880-5d91-4c14-ae8f-50a2ff55f66f)
+
+- Vision Intelligence  
 ![vision](https://github.com/user-attachments/assets/1e8fb442-f889-4907-a576-031383e3fb67)
 
-- Home Interface  
-- General Intelligence  
-- Memory Lanes  
-- Expert Personas  
-- Vision Intelligence  
+-- Demo video
+
+https://github.com/user-attachments/assets/9678b2ad-ea5f-472c-b31d-65756692a338
 
 ---
 

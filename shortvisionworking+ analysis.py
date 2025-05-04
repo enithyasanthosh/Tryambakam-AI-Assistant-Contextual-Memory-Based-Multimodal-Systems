@@ -7,7 +7,7 @@ from openai import OpenAI
 # Load environment variables
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key=api_key)
+client = OpenAI(api_key="sk-AgpGwpWvx3y4dZJPYB-PcxABaBPaEj0rJND1C8W6VxT3BlbkFJMoguKuyDSOdBVejqjCNjBWicIQ0tC5PI2fI2XAFh0A")
 
 # Webcam handler
 class WebcamStream:

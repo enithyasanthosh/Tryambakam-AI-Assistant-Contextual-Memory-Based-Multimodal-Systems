@@ -41,6 +41,7 @@ MEMORY_LANES = {
     "work": os.path.join(OVERALL_DIR, "work_memory"),
     "journal": os.path.join(OVERALL_DIR, "journal_memory")
 }
+
 CHAT_DIR = os.path.join(GENERAL_DIR, "chat_pages")
 
 # Create necessary directories
@@ -707,6 +708,62 @@ def generate_vision_response(prompt, image_base64):
         return response.choices[0].message.content.strip()
     except Exception as e:
         return f"Error: {e}"
+
+def save_to_memory_lanes(user_input, ai_response, categories=None):
+    """Save conversation to appropriate memory lanes"""
+    if not categories:
+        try:
+            # Import the client from config
+            from backend.config import client
+            
+            # Use the Llama model as specified
+            response = client.chat.completions.create(
+                model="gpt-3.5-turbo",  # Temporary fallback while fixing Llama API access
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "Categorize the following input into one or more categories: health, work, journal. Respond with only the category names separated by commas."
+                    },
+                    {"role": "user", "content": user_input}
+                ],
+                max_tokens=20
+            )
+            
+            categories_text = response.choices[0].message.content.strip().lower()
+            categories = [cat.strip() for cat in categories_text.split(',')]
+            print(f"Categories detected: {categories}")
+        except Exception as e:
+            print(f"Error in categorization: {e}")
+            # Default to journal if categorization fails
+            categories = ["journal"]
+    
+    # Save to each category
+    for category in categories:
+        if category in ["health", "work", "journal"]:
+            memory_file = f"chat_histories/overall_intelligence/{category}_memory/{category}_memory.json"
+            os.makedirs(os.path.dirname(memory_file), exist_ok=True)
+            
+            # Load existing memory
+            memory_data = []
+            if os.path.exists(memory_file):
+                try:
+                    with open(memory_file, 'r', encoding='utf-8') as f:
+                        memory_data = json.load(f)
+                except:
+                    memory_data = []
+            
+            # Add new entry
+            memory_data.append({
+                "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "human": user_input,
+                "ai": ai_response
+            })
+            
+            # Save updated memory
+            with open(memory_file, 'w', encoding='utf-8') as f:
+                json.dump(memory_data, f, indent=2)
+    
+    return categories
 
 if __name__ == "__main__":
     print("Tryambakam. Dual Intelligence System Initializing...")
